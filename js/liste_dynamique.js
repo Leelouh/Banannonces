@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () { // après chargement
 
-	function build_annonce_html(ann){
+	function build_annonce_html(annonce){
 		var ret = '';
 		ret+= '<div class="annonceGlobal">';
 		ret+= '<div class="enteteAnnonce">';
@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 	function afficheDonnees() {
 
 		//refresh_names();
-
+		var rechercher = document.getElementById("filtre");
+		//var search = new FormData(rechercher);
 		var request = new XMLHttpRequest();
 
+		
 		request.addEventListener('load', function(data) {
 
 			var ret = JSON.parse(data.target.responseText);
@@ -43,20 +45,22 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 				new_html += build_annonce_html(ret.annonces[i]);
 			}
 
-			document.querySelector('#annonces').innerHTML = new_html;
+			document.querySelector('#annoncesDyn').innerHTML = new_html;
 
 		});
 
 		
 		request.open("POST", "php/get_annonces.php");
-		
+		request.send();
+		//console.log("crevette");
+
 
 	}
 
 
 
-
-	afficheDonnees();
+	document.getElementById("affichage").addEventListener("click",afficheDonnees);
+	//afficheDonnees();
 
 });
 

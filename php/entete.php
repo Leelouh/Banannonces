@@ -1,3 +1,10 @@
-<h1 class="header center red-text">Banannonces</h1>
+<div class = "page-header">
+   
+   <h1>
+      Banannonces
+      <small>Upon a Time</small>
+   </h1>
+   
+</div>
 
 <!-- logo -->

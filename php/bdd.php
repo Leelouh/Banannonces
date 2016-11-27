@@ -73,6 +73,7 @@ function vidage_table() {
 
 function get_ann(){
 	$bdd=connexionbd();
+	//$stockVar = $_REQUEST['rechercher'];
 	$tableauAnnonces=requete($bdd, "select * from annonces");
 	$data=array('annonces' => array());
  
@@ -86,7 +87,7 @@ function get_ann(){
                                     'prix' => $val['prix'],
                                     'photo' => $val['photo'],
                                     'rdv_lat' => $val['rdv_lat'],
-                                    'rdv_lon' => $val['rdv_long'],
+                                    'rdv_lon' => $val['rdv_lon'],
                                     'dateAjout' => $val['date_ajout']); 
     }
 

@@ -1,10 +1,9 @@
+<!doctype html>
+
 <html>
 	<head>
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
-  		<link rel="stylesheet" href="style.css" />
-
-  		<script type="text/javascript" src=""></script>
 
 <!-- Latest compiled and minified CSS -->
 <!--<link rel="stylesheet" href="css/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->

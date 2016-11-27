@@ -56,6 +56,7 @@
   float : left;
   padding-top: 20px;
   padding-left: 70px;
+
  
 }
 
@@ -100,9 +101,11 @@
   margin : auto;
   width: 100%;
   height: 35px;
-  background-color: #44B9F0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  color: white;
+  /*border : solid 2px #2A284F;*/
+  background-color: #2A284F;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   /*border: 1px solid blue;
   border-radius: 10px;
@@ -122,7 +125,7 @@
   width:100%;
   height: 35px;
   /*border: 1px solid green;*/
-  background-color: #A8DCF5;
+  background-color: #EBF4FD;
   padding-top: 5px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -130,14 +133,17 @@
 
 .annonceGlobal{
   margin : auto;
-  width: 80%;
+  width: 70%;
   height: auto;
-  border: 1px solid blue;
+  border: 1px solid #2A284F;
   border-radius: 10px;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
 }
 
+#annoncesDyn{
+  padding-left: 10px;
+}
 
 
 
@@ -1549,6 +1555,7 @@ a.bg-danger:focus {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eee;
+  text-align: center;
 }
 ul,
 ol {
@@ -5616,8 +5623,9 @@ button.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: inherit;
+  text-align: center;
 }
 .panel-title > a,
 .panel-title > small,
