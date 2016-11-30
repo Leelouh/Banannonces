@@ -8,12 +8,12 @@ function connexionbd() {
 
 	// A MODIFIER : spécifiez votre login et votre mot de passe ici
 	$host = "localhost";
-	$username = "lou";
-	$password = "avocado";
+	$username = "flo";
+	$password = "avocado7";
 	$dbname = "banannonces";
 
 	// chaîne de connexion pour PDO (ne pas modifier)
-	$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8;unix_socket=/tmp/mysql.sock";
+	$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
 
 	// connexion au serveur de bases de données
 	$bd = new PDO($dsn, $username, $password);
@@ -73,9 +73,9 @@ function vidage_table() {
 
 function get_ann(){
 	$bdd=connexionbd();
-	//$stockVar = $_REQUEST['rechercher'];
-	$tableauAnnonces=requete($bdd, "select * from annonces");
-	$data=array('annonces' => array());
+	$tableauAnnonces=requete($bdd, "select * from annonces where nom_vendeur like '%{$_REQUEST['recherche']}%' or categorie like '%{$_REQUEST['recherche']}%' or description like '%{$_REQUEST['recherche']}%' or titre like '%{$_REQUEST['recherche']}%'");
+	
+    $data=array('annonces' => array());
  
     foreach ($tableauAnnonces as $val) {
 
@@ -91,9 +91,7 @@ function get_ann(){
                                     'dateAjout' => $val['date_ajout']); 
     }
 
-
     return $data;
-
 
 }
 
