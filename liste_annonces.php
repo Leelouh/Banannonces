@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!doctype html>
 
 <html>
@@ -7,13 +11,13 @@
 
 <!-- Latest compiled and minified CSS -->
 <!--<link rel="stylesheet" href="css/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
+        
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/>
+        
+        <link type="text/css" rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css"/>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="css/bootstrap-theme.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   		
 	</head>
 
@@ -29,9 +33,10 @@
 			<?php include("php/menu.php"); ?>
 		</nav>
 
-		<h3 class="header center red-text">Liste des annonces</h3>
-
-		<section>
+		
+		<section id="fond">
+            <div id="fondTitre"><div id="titre">Liste des annonces</div></div>
+            <br>
 			<?php
 				$bdd=connexionbd();
 				$tableauAnnonces=requete($bdd, "select * from annonces");
@@ -59,6 +64,7 @@
 
 					echo "<div class=\"corpsAnnonce\">"; //ouvre cA
 					echo "<div class=\"categorie\">{$arrayAnnonces[3]}</div>";
+                     
 					echo "<div class=\"photo-desc\">"; //ouvre pd
 					echo "<div class=\"photo\"><img height=\"150px\" src=\"{$arrayAnnonces[6]}\"></div>";
 					echo "<div class=\"description\">{$arrayAnnonces[2]}</div>";
@@ -70,9 +76,10 @@
 					echo "<div class=\"piedAnnonce\">";
 					echo "<div class=\"dateAjout\">{$arrayAnnonces[9]}</div>";
 					echo "<div class=\"nomVendeur\">{$arrayAnnonces[4]}</div>";
+                    //echo "<div class=\"btn btn-info btn-lg\"><span class=\"glyphicon glyphicon-trash\"></span> Trash</div>";
 					echo "</div>";//ferme piedAnnonce
 
-
+                    
 					echo "</div><br>"; // ferme le anno
 
 				}
@@ -88,8 +95,7 @@
 		
 		</footer>
 
-
-		
+        
 	</body>
 
 </html>

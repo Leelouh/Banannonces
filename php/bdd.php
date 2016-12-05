@@ -73,9 +73,9 @@ function vidage_table() {
 
 function get_ann(){
 	$bdd=connexionbd();
-	//$stockVar = $_REQUEST['rechercher'];
-	$tableauAnnonces=requete($bdd, "select * from annonces");
-	$data=array('annonces' => array());
+	$tableauAnnonces=requete($bdd, "select * from annonces where nom_vendeur like '%{$_REQUEST['recherche']}%' or categorie like '%{$_REQUEST['recherche']}%' or description like '%{$_REQUEST['recherche']}%' or titre like '%{$_REQUEST['recherche']}%'");
+	
+    $data=array('annonces' => array());
  
     foreach ($tableauAnnonces as $val) {
 
@@ -91,10 +91,81 @@ function get_ann(){
                                     'dateAjout' => $val['date_ajout']); 
     }
 
-
     return $data;
 
+}
 
+function addAnnonce(){
+    $bdd=connexionbd();
+    $requeteInsertion = "INSERT INTO annonces VALUES "
+		. "(DEFAULT, '{$_REQUEST['titre']}', '{$_REQUEST['description']}', '{$_REQUEST['cat']}', '{$_REQUEST['nomVendeur']}', {$_REQUEST['prix']}, '{$_REQUEST['photo']}', {$_REQUEST['lat']}, {$_REQUEST['lon']}, DEFAULT);";
+    
+    echo $requeteInsertion;
+    
+    
+    $machin=requete($bdd, $requeteInsertion);
+    var_dump($machin); //affiche valeur + le type
+    
+}
+
+function deleteAnnonce(){
+    $bdd=connexionbd();
+    session_start();
+    $requeteSuppression = "DELETE FROM annonces WHERE id = {$_REQUEST['supprimer']};";
+    
+    echo $requeteSuppression;
+    
+    if (isset($_SESSION['login'])) {
+        
+        requete($bdd, $requeteSuppression);
+    }
+    else {
+        echo "<script>alert(\"Veuillez vous connecter DANGER DANGER\")</script>";
+    }
+    
+}
+
+//Création table Connexion :
+//CREATE TABLE connexion (id INT AUTO_INCREMENT PRIMARY KEY, user VARCHAR(20), password VARCHAR(255))
+
+function connexion() {
+    $bdd = connexionbd();
+    
+    
+    // OK $login = $_REQUEST['login'];
+    // OK $password = $_REQUEST['password'];
+    $login = $_REQUEST['login'];
+    $password = $_REQUEST['password'];
+    echo $login;
+    echo ("VIVE LES PATATES");
+    
+    
+    $requeteConnexion = "SELECT id FROM connexion WHERE user = '{$login}' AND password = '{$password}';";
+    //$requeteConnexion = "SELECT id FROM connexion WHERE user = '{lou}' AND password = '{avocado}';";
+    $result = requete($bdd, $requeteConnexion);
+    
+    echo $requeteConnexion;
+    if (!$result) {
+        echo "Mauvais identifient ou mot de passe";
+        // renvoie false
+        $data['reponse']=false;
+    }
+    else {
+        session_start();
+        $_SESSION['id'] = $resultat['id'];
+        $_SESSION['login'] = $login;
+        echo "Bonjour {$_SESSION['login']} !";
+        // renvoie true
+    }
+    header("Refresh:0");
+}
+
+function deconnexion(){
+    session_start(); //rappelle que session est ouverte #débile
+    session_destroy();
+    
+    
+    header("Refresh:0");
 }
 
 ?>
