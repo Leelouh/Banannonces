@@ -69,9 +69,16 @@ function vidage_table() {
 }
 
 
-/////////////////////////AJOUT DE FONCTION
+/////////////////////////AJOUT DE FONCTION/////////////////////////
 
-function get_ann(){
+//Creation tables
+function tableMembre(){
+    $bdd=connexionbd();
+    $requeteCreation = "CREATE TABLE connexion (id INT AUTO_INCREMENT PRIMARY KEY, user VARCHAR(20), password VARCHAR(255));";
+    requete($bdd,$requeteCreation);
+}
+
+function get_ann(){ //Recherche annonce
 	$bdd=connexionbd();
 	$tableauAnnonces=requete($bdd, "select * from annonces where nom_vendeur like '%{$_REQUEST['recherche']}%' or categorie like '%{$_REQUEST['recherche']}%' or description like '%{$_REQUEST['recherche']}%' or titre like '%{$_REQUEST['recherche']}%'");
 	
@@ -95,77 +102,72 @@ function get_ann(){
 
 }
 
-function addAnnonce(){
+function addAnnonce(){ //Ajout d'annonce
     $bdd=connexionbd();
     $requeteInsertion = "INSERT INTO annonces VALUES "
 		. "(DEFAULT, '{$_REQUEST['titre']}', '{$_REQUEST['description']}', '{$_REQUEST['cat']}', '{$_REQUEST['nomVendeur']}', {$_REQUEST['prix']}, '{$_REQUEST['photo']}', {$_REQUEST['lat']}, {$_REQUEST['lon']}, DEFAULT);";
-    
-    echo $requeteInsertion;
-    
-    
+    //DEBUG echo $requeteInsertion;    
     $machin=requete($bdd, $requeteInsertion);
-    var_dump($machin); //affiche valeur + le type
+    var_dump($machin); //affiche valeur + le type ds réponse php
     
 }
 
-function deleteAnnonce(){
+function deleteAnnonce(){ //suppression Annonce
     $bdd=connexionbd();
     session_start();
     $requeteSuppression = "DELETE FROM annonces WHERE id = {$_REQUEST['supprimer']};";
-    
-    echo $requeteSuppression;
-    
+    //DEBUG echo $requeteSuppression;
     if (isset($_SESSION['login'])) {
-        
         requete($bdd, $requeteSuppression);
+        return true;
     }
     else {
-        echo "<script>alert(\"Veuillez vous connecter DANGER DANGER\")</script>";
+        return false;
     }
     
 }
 
-//Création table Connexion :
-//CREATE TABLE connexion (id INT AUTO_INCREMENT PRIMARY KEY, user VARCHAR(20), password VARCHAR(255))
 
-function connexion() {
+
+function connexion() { 
     $bdd = connexionbd();
-    
-    
-    // OK $login = $_REQUEST['login'];
-    // OK $password = $_REQUEST['password'];
+    //récupération du login+mdp
     $login = $_REQUEST['login'];
-    $password = $_REQUEST['password'];
-    echo $login;
-    echo ("VIVE LES PATATES");
-    
-    
+    $password = sha1($_REQUEST['password']); 
     $requeteConnexion = "SELECT id FROM connexion WHERE user = '{$login}' AND password = '{$password}';";
-    //$requeteConnexion = "SELECT id FROM connexion WHERE user = '{lou}' AND password = '{avocado}';";
     $result = requete($bdd, $requeteConnexion);
-    
-    echo $requeteConnexion;
+    //DEBUG echo $requeteConnexion;
     if (!$result) {
-        echo "Mauvais identifient ou mot de passe";
+        //echo "Mauvais identifient ou mot de passe";
         // renvoie false
-        $data['reponse']=false;
+        //$data['reponse']=false;
+        return false;
     }
     else {
         session_start();
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['login'] = $login;
-        echo "Bonjour {$_SESSION['login']} !";
+        //echo "Bonjour {$_SESSION['login']} !";
         // renvoie true
+        return true;
+        header("Refresh:0"); // rafraichit la page directement
     }
-    header("Refresh:0");
 }
 
 function deconnexion(){
-    session_start(); //rappelle que session est ouverte #débile
-    session_destroy();
-    
-    
+    session_start(); //rappelle que session est ouverte #débile, sinon, impossible de rafraichir la page
+    session_destroy();    
     header("Refresh:0");
+}
+
+function inscriptionMembre(){
+    $bdd=connexionbd();
+    $mdpHash = sha1($_REQUEST['passwordIns']);
+    $requeteInsertion = "INSERT INTO connexion VALUES "
+		. "(DEFAULT, '{$_REQUEST['name']}', '{$mdpHash}');";
+    
+    //DEBUG echo $requeteInsertion;    
+    requete($bdd, $requeteInsertion);
 }
 
 ?>

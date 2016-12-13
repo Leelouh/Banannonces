@@ -9,13 +9,7 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 		ret += '<div class="prix">' + annonce.prix + '</div>';
 		ret += '</div>';//ferme enteteAnnonce
 		ret += '<div class="corpsAnnonce">';
-		//ret += '<div class="categorie">' + annonce.categorie + '<button class="poubelle" id="poubelle" data-id="'+annonce.ident+'">Poubelle</button></div>';
         ret += '<div class="categorie">' + annonce.categorie + '<div id="poubelle"><button type="button" class="poubelle btn btn-info btn-lg" data-id="'+annonce.ident+'"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></div></div>';
-        
-        //<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> Trash</button>
-            
-        //<div class=\"btn btn-info btn-lg\"><span class=\"glyphicon glyphicon-trash\"></span> Trash</div>
-        
 		ret += '<div class="photo-desc">';
 		ret += '<div class="photo"><img height="150px" src="' + annonce.photo + '"></div>';
 		ret += '<div class="description">' + annonce.descript + '</div>';
@@ -33,38 +27,28 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 	}
 
 
-	function afficheDonnees() {
+	function afficheDonnees(){
         
-        
-
-		//refresh_names();
+		//DEBUGrefresh_names();
 		var rechercher = document.getElementById("filtre");
 		var search = new FormData(rechercher);
 		var request = new XMLHttpRequest();
 
-		
 		request.addEventListener('load', function (data) {
 
 			var ret = JSON.parse(data.target.responseText);
-
 			var new_html = '';
-
 			for (var i = 0; i < ret.annonces.length; i++) {
 				new_html += build_annonce_html(ret.annonces[i]);
 			}
-            
 			document.querySelector('#rechAnn').innerHTML = new_html;
-            //document.getElementById("poubelle").addEventListener("click", supprAnnonce);
-            
+            //DEBUGdocument.getElementById("poubelle").addEventListener("click", supprAnnonce);
             var classname = document.getElementsByClassName("poubelle");
             for (var i=0; i<classname.length;i++){
                 classname[i].addEventListener("click", supprAnnonce);
-            }
-                
-
+            }             
 		});
-
-		
+        
 		request.open("POST", "php/get_annonces.php");
 		request.send(search);
 
@@ -74,69 +58,58 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
     function refreshDonnees() {
         
         var request = new XMLHttpRequest();
-
-
         request.addEventListener('load', function (data) {
-
             var ret = JSON.parse(data.target.responseText);
-
             var new_html = '';
-
             for (var i = 0; i < ret.annonces.length; i++) {
                 new_html += build_annonce_html(ret.annonces[i]);
             }
-
             document.querySelector('#rechAnn').innerHTML = new_html;
-            //document.getElementById("poubelle").addEventListener("click", supprAnnonce);
-
+            //DEBUGdocument.getElementById("poubelle").addEventListener("click", supprAnnonce);
             var classname = document.getElementsByClassName("poubelle");
             for (var i=0; i<classname.length;i++){
                 classname[i].addEventListener("click", supprAnnonce);
             }
-
-
         });
-
-
             request.open("POST", "php/get_annonces.php");
             request.send();
-
 	}
 
     
     function ajouteAnnonce(){
-       //console.log("hello");
+       //DEBUGconsole.log("hello");
         var ajouter = document.getElementById("newAdd");
         var add = new FormData(ajouter);
         var request = new XMLHttpRequest();
-        
         request.open("POST", "php/new_annonces.php");
         request.send(add);
-        
         refreshDonnees();
     }
     
     
     function supprAnnonce(){
         //récupérer ID
-        //console.log("suppressiiiiion");
+        //DEBUGconsole.log("suppressiiiiion");
         var supprimer = this.getAttribute('data-id');
         var delAnn = new FormData();
         delAnn.append('supprimer', supprimer); //clé+valeur
         var request = new XMLHttpRequest();
         
+        request.addEventListener('load', function(data){
+            var ret = JSON.parse(data.target.responseText);
+            if (ret==false){
+                alert("Veuillez-vous identifier pour supprimer une annonce");
+            }
+        });
+        
         request.open("POST", "php/delete_annonces.php");
         request.send(delAnn);
-        
         refreshDonnees();
     }
-
-
+    
+    
 	document.getElementById("affichage").addEventListener("click",afficheDonnees);
     document.getElementById("addAnn").addEventListener("click", ajouteAnnonce);
-    
-    
-	
-
+    document.getElementById("affichageTout").addEventListener("click", refreshDonnees);
 });
 

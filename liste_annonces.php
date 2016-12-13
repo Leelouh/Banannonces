@@ -9,16 +9,11 @@
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
 
-<!-- Latest compiled and minified CSS -->
-<!--<link rel="stylesheet" href="css/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-        
+        <!--INSERTION BOOTSTRAP-->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/>
-        
+        <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/> 
         <link type="text/css" rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css"/>
 
-
-  		
 	</head>
 
 	<body>
@@ -49,13 +44,7 @@
 					//ligne
 					foreach ($entry as $valeur) {
 						$arrayAnnonces[]=$valeur;
-						//echo $valeur;
-						//echo "<br>";
-					}
-					
-					//echo "<br>";
-					//echo $arrayAnnonces[0];
-
+                    }
 					echo "<div class=\"enteteAnnonce\">";
 					echo "<div class=\"id\">{$arrayAnnonces[0]}</div>";
 					echo "<div class=\"titre\">{$arrayAnnonces[1]}</div>";
@@ -69,7 +58,7 @@
 					echo "<div class=\"photo\"><img height=\"150px\" src=\"{$arrayAnnonces[6]}\"></div>";
 					echo "<div class=\"description\">{$arrayAnnonces[2]}</div>";
 					echo "</div>";//ferme photo-desc
-					echo "<div class=\"rdv_lat\">{$arrayAnnonces[7]}</div>";
+                    echo "<div class=\"rdv_lat\">{$arrayAnnonces[7]}</div>";
 					echo "<div class=\"rdv_lon\">{$arrayAnnonces[8]}</div>";
 					echo "</div>";//ferme corpsAnnonce
 
@@ -88,11 +77,7 @@
 		</section>
 
 		<footer>
-			<?php include("php/pied.php"); ?>
-
-					<!-- Utilisation Materialize -->
-		<!--Import jQuery before materialize.js-->
-		
+			<?php include("php/pied.php"); ?>		
 		</footer>
 
         

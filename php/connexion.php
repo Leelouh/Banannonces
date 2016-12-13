@@ -2,6 +2,7 @@
 
     include("bdd.php"); 
 
-    connexion();
+    $repCo = connexion();
+    echo json_encode($repCo);
 
 ?>

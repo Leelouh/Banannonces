@@ -6,7 +6,7 @@
        
        </h4>
    </div>
-  <div class="panel-footer">Made by Laura Helou and Florian Larue - Last update : 27/11/16 - Copyright</div>
+  <div class="panel-footer">Made by Laura Helou and Florian Larue - Last update : 6/12/16 - Copyright</div>
 </div>
 </div>
 

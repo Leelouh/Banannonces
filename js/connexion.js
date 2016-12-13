@@ -8,7 +8,14 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
         var requete = new XMLHttpRequest();
         
        
-        console.log("CONNEXIOOOOON");
+        requete.addEventListener('load', function(data){
+            event.preventDefault(); // ne pas recharger la page
+            var ret = JSON.parse(data.target.responseText);
+            alert(ret);
+            if (ret==false){
+                alert("Mauvais identifiant ou mot de passe");
+            }
+        });
         
         
         requete.open("POST", "php/connexion.php"); // récup info et envoie à php

@@ -2,7 +2,7 @@
 
     include("bdd.php"); 
 
-    deleteAnnonce();
-
+    $reponse = deleteAnnonce();
+    echo json_encode($reponse); //renvoie au js
 
 ?>

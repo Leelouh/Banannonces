@@ -10,12 +10,13 @@
   		<meta charset="UTF-8">
 
 
-		<!-- Latest compiled and minified CSS -->
+		<!-- INSERTION BOOTSTRAP -->
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
-        <!--<link type="text/css" href="bootstrap-social-gh-pages/bootstrap-social.css"/>-->
         <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/>
         
         <link type="text/css" rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css"/>
+        
+        <script src="js/nouveau_membre.js"></script>
 	</head>
 
 	<body>
@@ -37,7 +38,7 @@
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
+					<form id="newMember" class="form-horizontal" method="post" action="#">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Nom</label>
@@ -54,17 +55,29 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Your Email"/>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Votre adresse e-mail"/>
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label required">Mot de passe</label>
+							<label for="passwordIns" class="cols-sm-2 control-label required">Mot de passe</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="password" id="password" placeholder="Votre mot de passe"/>
+									<input type="password" class="form-control" name="passwordIns" id="passwordIns" placeholder="Votre mot de passe"/>
+								</div>
+							</div>
+						</div>
+                        
+                        <div id="checkMDP"></div>
+                        
+                        <div class="form-group">
+							<label for="passwordIns2" class="cols-sm-2 control-label required">Confirmer votre mot de passe</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="passwordIns2" id="passwordIns2" placeholder="Retaper mot de passe"/>
 								</div>
 							</div>
 						</div>
@@ -88,7 +101,7 @@
 						</div>
 
 						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+							<button type="button" id="inscription" class="btn btn-primary btn-lg btn-block login-button">S'enregistrer</button>
                             <br>
 						</div>
 					</form>
