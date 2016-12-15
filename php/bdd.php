@@ -8,12 +8,12 @@ function connexionbd() {
 
 	// A MODIFIER : spécifiez votre login et votre mot de passe ici
 	$host = "localhost";
-	$username = "lou";
-	$password = "avocado";
+	$username = "flo";
+	$password = "avocado7";
 	$dbname = "banannonces";
 
 	// chaîne de connexion pour PDO (ne pas modifier)
-	$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8;unix_socket=/tmp/mysql.sock";
+	$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8;";
 
 	// connexion au serveur de bases de données
 	$bd = new PDO($dsn, $username, $password);
@@ -131,24 +131,17 @@ function deleteAnnonce(){ //suppression Annonce
 
 function connexion() { 
     $bdd = connexionbd();
-    //récupération du login+mdp
     $login = $_REQUEST['login'];
     $password = sha1($_REQUEST['password']); 
     $requeteConnexion = "SELECT id FROM connexion WHERE user = '{$login}' AND password = '{$password}';";
     $result = requete($bdd, $requeteConnexion);
-    //DEBUG echo $requeteConnexion;
     if (!$result) {
-        //echo "Mauvais identifient ou mot de passe";
-        // renvoie false
-        //$data['reponse']=false;
         return false;
     }
     else {
         session_start();
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['login'] = $login;
-        //echo "Bonjour {$_SESSION['login']} !";
-        // renvoie true
         return true;
         header("Refresh:0"); // rafraichit la page directement
     }
@@ -162,12 +155,23 @@ function deconnexion(){
 
 function inscriptionMembre(){
     $bdd=connexionbd();
-    $mdpHash = sha1($_REQUEST['passwordIns']);
-    $requeteInsertion = "INSERT INTO connexion VALUES "
-		. "(DEFAULT, '{$_REQUEST['name']}', '{$mdpHash}');";
     
-    //DEBUG echo $requeteInsertion;    
-    requete($bdd, $requeteInsertion);
+    //test si un membre est déjà présent dans la bdd avec ce login
+    $requeteTest = "SELECT id FROM connexion WHERE user = '{$_REQUEST['name']}';";
+    $resultat = requete($bdd, $requeteTest);
+    
+    if ($resultat) {
+        return false;
+    }
+    
+    else {
+        $mdpHash = sha1($_REQUEST['passwordIns']);
+        $requeteInsertion = "INSERT INTO connexion VALUES "
+		. "(DEFAULT, '{$_REQUEST['name']}', '{$mdpHash}');";
+   
+        requete($bdd, $requeteInsertion);
+        return true;
+    }
 }
 
 ?>

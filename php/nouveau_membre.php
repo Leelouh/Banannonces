@@ -1,7 +1,6 @@
 <?php 
 
     include("bdd.php"); 
-    
-    inscriptionMembre();
-
+    $reponse = inscriptionMembre();
+    echo json_encode($reponse);
 ?>

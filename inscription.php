@@ -50,6 +50,8 @@
 							</div>
 						</div>
 
+                        <div id="checkLGN"></div>
+                        
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Email</label>
 							<div class="cols-sm-10">

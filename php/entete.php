@@ -9,7 +9,9 @@
         echo "</div>";
     }
     else {
-        echo "<form id=\"signin\" class=\"navbar-form navbar-right\" role=\"form\">";
+        echo "<div class=\"navbar-form navbar-right\">";
+        echo "<div style=\"float:left;\">";
+        echo "<form id=\"signin\" method=\"POST\">";
             echo "<div class=\"input-group\">";
                 echo "<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>";
                 echo "<input id=\"login\" type=\"login\" class=\"form-control\" name=\"login\" value=\"\" placeholder=\"Nom d'utilisateur\">";
@@ -18,9 +20,12 @@
                 echo "<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>";
                 echo "<input id=\"password\" type=\"password\" class=\"form-control\" name=\"password\" value=\"\" placeholder=\"Mot de passe\">";
             echo "</div>";
-
+      echo "</form>";
+        echo "</div>";
+        echo "<div style=\"float:right; margin-top:5px;\">";
             echo "<button id=\"connexionBTN\" class=\"btn btn-primary\">Login</button>";
-        echo "</form>";
+        echo "</div>";
+        echo "</div>";
         echo "<script type=\"text/javascript\" src=\"js/connexion.js\"></script>";
     }
 ?>

@@ -10,7 +10,7 @@
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
   		<script src="js/liste_dynamique.js"></script>
-        
+        <script src="js/jquery-3.1.1.min.js"></script>
 
   		<!--INSERTION BOOTSTRAP-->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
@@ -87,13 +87,10 @@
         
         <br>
         
-            
-        
-        
 		<footer>
 			<?php include("php/pied.php"); ?>
 		</footer>
-
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAxF2J35RXDJzQaiWsc3rumWi_AIvkzpU"></script>
     </body>
     
 

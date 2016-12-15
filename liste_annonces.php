@@ -8,7 +8,7 @@
 	<head>
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
-
+        <script src="js/jquery-3.1.1.min.js"></script>
         <!--INSERTION BOOTSTRAP-->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/> 
@@ -58,8 +58,7 @@
 					echo "<div class=\"photo\"><img height=\"150px\" src=\"{$arrayAnnonces[6]}\"></div>";
 					echo "<div class=\"description\">{$arrayAnnonces[2]}</div>";
 					echo "</div>";//ferme photo-desc
-                    echo "<div class=\"rdv_lat\">{$arrayAnnonces[7]}</div>";
-					echo "<div class=\"rdv_lon\">{$arrayAnnonces[8]}</div>";
+                    echo "<div style=\"height:200px; padding-right:5px;\"><div class=\"map\">{$arrayAnnonces[7]},{$arrayAnnonces[8]}</div></div>";
 					echo "</div>";//ferme corpsAnnonce
 
 					echo "<div class=\"piedAnnonce\">";
@@ -72,7 +71,6 @@
 					echo "</div><br>"; // ferme le anno
 
 				}
-
 			?>
 		</section>
 
@@ -80,7 +78,33 @@
 			<?php include("php/pied.php"); ?>		
 		</footer>
 
-        
+        <script>
+            function initMap() {
+                $('.map').each(function (index, Element) {
+                    var coords = $(Element).text().split(",");
+                    if (coords.length != 2) {
+                        $(this).display = "none";
+                        return;
+                    }
+                    else {
+                        var uluru = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+                        var map = new google.maps.Map(Element, {
+                          zoom: 10,
+                          center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                        });
+
+                    }
+
+                });
+            }
+        </script>
+        <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAxF2J35RXDJzQaiWsc3rumWi_AIvkzpU&callback=initMap">
+    </script>
 	</body>
 
 </html>
