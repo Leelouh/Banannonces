@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 		ret += '<div class="photo"><img height="150px" src="' + annonce.photo + '"></div>';
 		ret += '<div class="description">' + annonce.descript + '</div>';
 		ret += '</div>';//ferme photo-desc
-        ret += '<div style="height:200px; padding-right:5px;"><div class="map">' + annonce.rdv_lat + ','+annonce.rdv_lon +'</div></div>';
+         ret += '<div style="height:200px; padding-right:5px;"><div class="map">' + annonce.rdv_lat + ','+annonce.rdv_lon +'</div></div>';
 		ret += '</div>'; //ferme corpsAnnonce
 		ret += '<div class="piedAnnonce">';
 		ret += '<div class="dateAjout">' + annonce.dateAjout + '</div>';
@@ -47,15 +47,14 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
 
         });
     }
-
+    
+    
 	function afficheDonnees(){
-        
-		//DEBUGrefresh_names();
 		var rechercher = document.getElementById("filtre");
 		var search = new FormData(rechercher);
 		var request = new XMLHttpRequest();
-		request.addEventListener('load', function (data) {
-
+		
+        request.addEventListener('load', function (data) {
 			var ret = JSON.parse(data.target.responseText);
 			var new_html = '';
 			for (var i = 0; i < ret.annonces.length; i++) {
@@ -70,9 +69,8 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
             initMap();
 		});
         
-		request.send(search);
-		request.open("POST", "php/get_annonces.php");
-        
+        request.open("POST", "php/get_annonces.php");
+		request.send(search);    
 
 	}
     
@@ -87,11 +85,12 @@ document.addEventListener('DOMContentLoaded', function () { // après chargement
                 new_html += build_annonce_html(ret.annonces[i]);
             }
             document.querySelector('#rechAnn').innerHTML = new_html;
-            //DEBUGdocument.getElementById("poubelle").addEventListener("click", supprAnnonce);
+
             var classname = document.getElementsByClassName("poubelle");
             for (var i=0; i<classname.length;i++){
                 classname[i].addEventListener("click", supprAnnonce);
             }
+            initMap();
         });
             request.open("POST", "php/get_annonces.php");
             request.send();

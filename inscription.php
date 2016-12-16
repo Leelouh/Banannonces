@@ -8,8 +8,7 @@
 	<head>
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
-
-
+        <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi"/>
 		<!-- INSERTION BOOTSTRAP -->
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/>

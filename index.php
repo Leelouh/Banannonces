@@ -9,11 +9,13 @@
 <html>
 	<head>
 		<title>Banannonces</title>
-  		<meta charset="UTF-8">
-
+  		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, target-densitydpi=device-dpi">
 
 		<!--INSERTION BOOTSTRAP-->
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
+        
         <link type="text/css" rel="stylesheet" href="bootstrap-social-gh-pages/bootstrap-social.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css"/>
 
@@ -47,8 +49,8 @@
 		</footer>
 
   		
-
-		
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>	
 	</body>
 
 </html>

@@ -211,6 +211,9 @@
     float: right;
 }
 
+img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video, .map {
+    max-width: 100%;
+}
 
 /**********************************************************************/
  /***************************** BOOTSTRAP ****************************/
@@ -222,6 +225,7 @@ html {
 }
 body {
   margin: 0;
+  min-width: 320px;
  
 }
 article,

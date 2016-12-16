@@ -8,6 +8,7 @@
 	<head>
 		<title>Banannonces</title>
   		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi"/>
         <script src="js/jquery-3.1.1.min.js"></script>
         <!--INSERTION BOOTSTRAP-->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css"  media="screen,projection"/>
